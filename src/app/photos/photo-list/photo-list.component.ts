@@ -2,6 +2,7 @@ import { PhotoService } from './../photo/photo.service';
 import { Photo } from './../photo/photo';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoadingService } from 'src/app/shared/loading/loading.service';
 
 @Component({
   selector: 'app-photo-list',
@@ -18,10 +19,12 @@ export class PhotoListComponent implements OnInit {
 
   constructor(
     private photoService: PhotoService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private loadingService: LoadingService
     ) { }
 
   ngOnInit(): void {
+
     this.activatedRoute.params.subscribe(params => {
       this.userName = params.userName
       this.photos = this.activatedRoute.snapshot.data['photos']
